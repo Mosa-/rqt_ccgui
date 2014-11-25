@@ -18,7 +18,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
 ## See http://ros.org/doc/api/catkin/html/user_guide/setup_dot_py.html
-# catkin_python_setup()
+catkin_python_setup()
 
 ################################################
 ## Declare ROS messages, services and actions ##
@@ -104,7 +104,7 @@ include_directories(
 # )
 
 ## Declare a cpp executable
-# add_executable(rqt_ccgui_node src/rqt_ccgui_node.cpp)
+add_executable(rqt_ccgui src/ccgui.cpp)
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
@@ -114,6 +114,7 @@ include_directories(
 # target_link_libraries(rqt_ccgui_node
 #   ${catkin_LIBRARIES}
 # )
+target_link_libraries(rqt_ccgui ${catkin_LIBRARIES})
 
 #############
 ## Install ##
@@ -149,6 +150,7 @@ include_directories(
 #   # myfile2
 #   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 # )
+
 
 #############
 ## Testing ##
