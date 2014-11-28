@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>676</width>
+    <height>375</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>0</y>
+     <width>20</width>
+     <height>331</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Vertical</enum>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="startRSCI">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>340</y>
+     <width>92</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Start RSCI</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>50</y>
+     <width>221</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Timeout.....................................</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>70</y>
+     <width>211</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Default sleep time.....................</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>90</y>
+     <width>231</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Default execution count.............</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>150</y>
+     <width>221</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Default move speed...................</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>170</y>
+     <width>221</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Default accelerate factor............</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_6">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>190</y>
+     <width>221</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Maximal speed...........................</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>210</y>
+     <width>221</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Default twist factor....................</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_8">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>230</y>
+     <width>221</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Default twist speed.....................</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_9">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>290</y>
+     <width>221</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Default gripper step....................</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_10">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>120</y>
+     <width>151</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Moving&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_11">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>260</y>
+     <width>151</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;SCHUNK-Arm&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_12">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>20</y>
+     <width>151</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;General&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>50</y>
+     <width>71</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_2">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>70</y>
+     <width>71</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_3">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>90</y>
+     <width>71</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_4">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>150</y>
+     <width>71</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_5">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>170</y>
+     <width>71</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_6">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>190</y>
+     <width>71</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_7">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>210</y>
+     <width>71</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_8">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>230</y>
+     <width>71</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_9">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>290</y>
+     <width>71</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="helpBtn1">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>47</y>
+     <width>21</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="helpBtn2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>67</y>
+     <width>21</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="helpBtn3">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>87</y>
+     <width>21</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="helpBtn4">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>147</y>
+     <width>21</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="helpBtn5">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>167</y>
+     <width>21</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="helpBtn6">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>187</y>
+     <width>21</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="helpBtn7">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>207</y>
+     <width>21</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="helpBtn8">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>227</y>
+     <width>21</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="helpBtn9">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>287</y>
+     <width>21</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
