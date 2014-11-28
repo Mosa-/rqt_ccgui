@@ -1,0 +1,12 @@
+<library path="lib/librqt_ccgui">
+	<class name="rqt_ccgui/ccgui" type="rqt_ccgui::ccgui" base_class_type="rqt_gui_cpp::Plugin">
+		<description>
+			To configure RSCI (ROS Speech Control interface) and see the current speechcommands.
+		</description>
+	<qtgui>
+		<label>CCGUI</label>
+		<icon type="theme">applications-other</icon>
+		<statustip>A GUI plugin to configure RSCI (ROS Speech Control interface) and see the current commands.</statustip>
+	</qtgui>
+	</class>
+</library>
