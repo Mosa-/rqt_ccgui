@@ -16,7 +16,7 @@
   <widget class="Line" name="line">
    <property name="geometry">
     <rect>
-     <x>310</x>
+     <x>320</x>
      <y>0</y>
      <width>20</width>
      <height>331</height>
@@ -29,7 +29,7 @@
   <widget class="QPushButton" name="startRSCI">
    <property name="geometry">
     <rect>
-     <x>270</x>
+     <x>280</x>
      <y>340</y>
      <width>92</width>
      <height>27</height>
@@ -195,7 +195,7 @@
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;General&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="lineEdit_timeout">
    <property name="geometry">
     <rect>
      <x>230</x>
@@ -204,8 +204,11 @@
      <height>21</height>
     </rect>
    </property>
+   <property name="text">
+    <string>2000</string>
+   </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_2">
+  <widget class="QLineEdit" name="lineEdit_Dsleeptime">
    <property name="geometry">
     <rect>
      <x>230</x>
@@ -214,8 +217,11 @@
      <height>21</height>
     </rect>
    </property>
+   <property name="text">
+    <string>0.3</string>
+   </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_3">
+  <widget class="QLineEdit" name="lineEdit_DexeCount">
    <property name="geometry">
     <rect>
      <x>230</x>
@@ -224,8 +230,11 @@
      <height>21</height>
     </rect>
    </property>
+   <property name="text">
+    <string>5</string>
+   </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_4">
+  <widget class="QLineEdit" name="lineEdit_DmoveSpeed">
    <property name="geometry">
     <rect>
      <x>230</x>
@@ -234,8 +243,11 @@
      <height>21</height>
     </rect>
    </property>
+   <property name="text">
+    <string>0.05</string>
+   </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_5">
+  <widget class="QLineEdit" name="lineEdit_DaccFactor">
    <property name="geometry">
     <rect>
      <x>230</x>
@@ -244,8 +256,11 @@
      <height>21</height>
     </rect>
    </property>
+   <property name="text">
+    <string>0.05</string>
+   </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_6">
+  <widget class="QLineEdit" name="lineEdit_maxSpeed">
    <property name="geometry">
     <rect>
      <x>230</x>
@@ -254,8 +269,11 @@
      <height>21</height>
     </rect>
    </property>
+   <property name="text">
+    <string>0.35</string>
+   </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_7">
+  <widget class="QLineEdit" name="lineEdit_DtwistFactor">
    <property name="geometry">
     <rect>
      <x>230</x>
@@ -264,8 +282,11 @@
      <height>21</height>
     </rect>
    </property>
+   <property name="text">
+    <string>30</string>
+   </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_8">
+  <widget class="QLineEdit" name="lineEdit_DtwistSpeed">
    <property name="geometry">
     <rect>
      <x>230</x>
@@ -274,8 +295,11 @@
      <height>21</height>
     </rect>
    </property>
+   <property name="text">
+    <string>0.30</string>
+   </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_9">
+  <widget class="QLineEdit" name="lineEdit_DgripperStep">
    <property name="geometry">
     <rect>
      <x>230</x>
@@ -284,12 +308,15 @@
      <height>21</height>
     </rect>
    </property>
+   <property name="text">
+    <string>0.01</string>
+   </property>
   </widget>
-  <widget class="QPushButton" name="helpBtn1">
+  <widget class="QPushButton" name="helpBtn_timeout">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>47</y>
+     <x>300</x>
+     <y>50</y>
      <width>21</width>
      <height>21</height>
     </rect>
@@ -298,11 +325,11 @@
     <string/>
    </property>
   </widget>
-  <widget class="QPushButton" name="helpBtn2">
+  <widget class="QPushButton" name="helpBtn_Dsleeptime">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>67</y>
+     <x>300</x>
+     <y>70</y>
      <width>21</width>
      <height>21</height>
     </rect>
@@ -311,11 +338,11 @@
     <string/>
    </property>
   </widget>
-  <widget class="QPushButton" name="helpBtn3">
+  <widget class="QPushButton" name="helpBtn_DexeCount">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>87</y>
+     <x>300</x>
+     <y>90</y>
      <width>21</width>
      <height>21</height>
     </rect>
@@ -324,11 +351,11 @@
     <string/>
    </property>
   </widget>
-  <widget class="QPushButton" name="helpBtn4">
+  <widget class="QPushButton" name="helpBtn_Dmovespeed">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>147</y>
+     <x>300</x>
+     <y>150</y>
      <width>21</width>
      <height>21</height>
     </rect>
@@ -337,11 +364,11 @@
     <string/>
    </property>
   </widget>
-  <widget class="QPushButton" name="helpBtn5">
+  <widget class="QPushButton" name="helpBtn_DaccFactor">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>167</y>
+     <x>300</x>
+     <y>170</y>
      <width>21</width>
      <height>21</height>
     </rect>
@@ -350,11 +377,11 @@
     <string/>
    </property>
   </widget>
-  <widget class="QPushButton" name="helpBtn6">
+  <widget class="QPushButton" name="helpBtn_maxSpeed">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>187</y>
+     <x>300</x>
+     <y>190</y>
      <width>21</width>
      <height>21</height>
     </rect>
@@ -363,11 +390,11 @@
     <string/>
    </property>
   </widget>
-  <widget class="QPushButton" name="helpBtn7">
+  <widget class="QPushButton" name="helpBtn_DtwistFactor">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>207</y>
+     <x>300</x>
+     <y>210</y>
      <width>21</width>
      <height>21</height>
     </rect>
@@ -376,11 +403,11 @@
     <string/>
    </property>
   </widget>
-  <widget class="QPushButton" name="helpBtn8">
+  <widget class="QPushButton" name="helpBtn_DtwistSpeed">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>227</y>
+     <x>300</x>
+     <y>230</y>
      <width>21</width>
      <height>21</height>
     </rect>
@@ -389,11 +416,11 @@
     <string/>
    </property>
   </widget>
-  <widget class="QPushButton" name="helpBtn9">
+  <widget class="QPushButton" name="helpBtn_DgripperStep">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>287</y>
+     <x>300</x>
+     <y>290</y>
      <width>21</width>
      <height>21</height>
     </rect>
@@ -402,6 +429,220 @@
     <string/>
    </property>
   </widget>
+  <widget class="QLabel" name="label_13">
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>20</y>
+     <width>241</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Active speech commands&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_move">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>50</y>
+     <width>311</width>
+     <height>55</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:26pt; font-weight:600;&quot;&gt;move&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_turn">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>120</y>
+     <width>311</width>
+     <height>55</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:28pt; font-weight:600;&quot;&gt;turn&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_look">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>190</y>
+     <width>311</width>
+     <height>55</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:28pt; font-weight:600;&quot;&gt;look&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_gripper">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>260</y>
+     <width>311</width>
+     <height>55</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:28pt; font-weight:600;&quot;&gt;grip&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_move_data">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>50</y>
+     <width>181</width>
+     <height>55</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:28pt; font-weight:600;&quot;&gt;...&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_turn_data">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>120</y>
+     <width>181</width>
+     <height>55</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:28pt; font-weight:600;&quot;&gt;...&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_look_data">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>190</y>
+     <width>161</width>
+     <height>55</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:28pt; font-weight:600;&quot;&gt;...&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_grip_data">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>260</y>
+     <width>161</width>
+     <height>55</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:28pt; font-weight:600;&quot;&gt;...&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>510</x>
+     <y>340</y>
+     <width>157</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <item>
+     <widget class="QLabel" name="label_status_2">
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Robot active:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="status_2">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>330</y>
+     <width>111</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QLabel" name="label_status">
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Status:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="status">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <zorder>line</zorder>
+  <zorder>startRSCI</zorder>
+  <zorder>label</zorder>
+  <zorder>label_2</zorder>
+  <zorder>label_3</zorder>
+  <zorder>label_4</zorder>
+  <zorder>label_5</zorder>
+  <zorder>label_6</zorder>
+  <zorder>label_7</zorder>
+  <zorder>label_8</zorder>
+  <zorder>label_9</zorder>
+  <zorder>label_10</zorder>
+  <zorder>label_11</zorder>
+  <zorder>label_12</zorder>
+  <zorder>lineEdit_timeout</zorder>
+  <zorder>lineEdit_Dsleeptime</zorder>
+  <zorder>lineEdit_DexeCount</zorder>
+  <zorder>lineEdit_DmoveSpeed</zorder>
+  <zorder>lineEdit_DaccFactor</zorder>
+  <zorder>lineEdit_maxSpeed</zorder>
+  <zorder>lineEdit_DtwistFactor</zorder>
+  <zorder>lineEdit_DtwistSpeed</zorder>
+  <zorder>lineEdit_DgripperStep</zorder>
+  <zorder>helpBtn_timeout</zorder>
+  <zorder>helpBtn_Dsleeptime</zorder>
+  <zorder>helpBtn_DexeCount</zorder>
+  <zorder>helpBtn_Dmovespeed</zorder>
+  <zorder>helpBtn_DaccFactor</zorder>
+  <zorder>helpBtn_maxSpeed</zorder>
+  <zorder>helpBtn_DtwistFactor</zorder>
+  <zorder>helpBtn_DtwistSpeed</zorder>
+  <zorder>helpBtn_DgripperStep</zorder>
+  <zorder>label_status</zorder>
+  <zorder>status</zorder>
+  <zorder>label_13</zorder>
+  <zorder>label_move</zorder>
+  <zorder>label_turn</zorder>
+  <zorder>label_look</zorder>
+  <zorder>label_gripper</zorder>
+  <zorder>label_move_data</zorder>
+  <zorder>label_turn_data</zorder>
+  <zorder>label_look_data</zorder>
+  <zorder>label_grip_data</zorder>
+  <zorder>label_status</zorder>
+  <zorder>layoutWidget</zorder>
  </widget>
  <resources/>
  <connections/>
