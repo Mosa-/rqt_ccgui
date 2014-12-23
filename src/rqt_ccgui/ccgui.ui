@@ -557,14 +557,14 @@
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_2">
     <item>
-     <widget class="QLabel" name="label_status_2">
+     <widget class="QLabel" name="label_robot_active">
       <property name="text">
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Robot active:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="status_2">
+     <widget class="QPushButton" name="robot_active">
       <property name="text">
        <string/>
       </property>
@@ -572,11 +572,11 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>330</y>
+     <y>340</y>
      <width>111</width>
      <height>29</height>
     </rect>
@@ -598,6 +598,7 @@
     </item>
    </layout>
   </widget>
+  <zorder>layoutWidget</zorder>
   <zorder>line</zorder>
   <zorder>startRSCI</zorder>
   <zorder>label</zorder>
@@ -630,8 +631,6 @@
   <zorder>helpBtn_DtwistFactor</zorder>
   <zorder>helpBtn_DtwistSpeed</zorder>
   <zorder>helpBtn_DgripperStep</zorder>
-  <zorder>label_status</zorder>
-  <zorder>status</zorder>
   <zorder>label_13</zorder>
   <zorder>label_move</zorder>
   <zorder>label_turn</zorder>
@@ -641,7 +640,6 @@
   <zorder>label_turn_data</zorder>
   <zorder>label_look_data</zorder>
   <zorder>label_grip_data</zorder>
-  <zorder>label_status</zorder>
   <zorder>layoutWidget</zorder>
  </widget>
  <resources/>

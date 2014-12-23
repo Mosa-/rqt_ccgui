@@ -9,7 +9,11 @@
 #include <QMessageBox>
 #include <ros/package.h>
 #include <std_msgs/String.h>
+#include <string>
 #include <ros/ros.h>
+#include <QTimer>
+
+
 using namespace std;
 
 namespace rqt_ccgui {
@@ -31,10 +35,21 @@ public:
 private:
   Ui_Form ui_;
   QWidget* widget_;
+  QTimer* timer;
+
+  ros::Subscriber sub;
+  bool speechCmd;
+  QString lastCmd;
+  QString currentCmd;
+  QString currentData;
+  bool robotActive;
+  bool appStatus;
   void configureHelpButtons();
-  void activeSpeechCommand(QString command, QString data);
-  void deactiveSpeechCommand(QString command);
+  void activeSpeechCommand();
+  void deactiveSpeechCommand();
   void receiveSpeechCommand(const std_msgs::StringConstPtr& cmd);
+  void changeLEDStatus(QString object, bool active);
+  void setupModel();
 
 private slots:
   void clickLabelhelpBtn_timeout();
@@ -46,6 +61,8 @@ private slots:
   void clickLabelhelpBtn_DtwistFactor();
   void clickLabelhelpBtn_DtwistSpeed();
   void clickLabelhelpBtn_DgripperStep();
+  void rsciBtn();
+  void updateGUI();
 
 };
 } // namespace

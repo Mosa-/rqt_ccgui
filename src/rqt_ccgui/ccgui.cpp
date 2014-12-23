@@ -14,15 +14,6 @@ ccgui::ccgui()
   setObjectName("rqt_ccgui");
 }
 
-void ccgui::receiveSpeechCommand(const std_msgs::StringConstPtr& cmd){
-	ROS_INFO("test test %s", cmd->data.c_str());
-}
-
-void receiveSpeechCommand1(const std_msgs::StringConstPtr& cmd){
-	ROS_INFO("test test %s", cmd->data.c_str());
-}
-
-
 
 void ccgui::initPlugin(qt_gui_cpp::PluginContext& context)
 {
@@ -44,11 +35,19 @@ void ccgui::initPlugin(qt_gui_cpp::PluginContext& context)
   ui_.status->setIconSize(QSize(21, 21));
   ui_.status->setStyleSheet("QPushButton{border: none;outline: none;}");
 
+  ui_.robot_active->setIcon(refresh_icon);
+  ui_.robot_active->setIconSize(QSize(21, 21));
+  ui_.robot_active->setStyleSheet("QPushButton{border: none;outline: none;}");
+
   this->configureHelpButtons();
-  this->deactiveSpeechCommand("move");
-  this->deactiveSpeechCommand("turn");
-  this->deactiveSpeechCommand("look");
-  this->deactiveSpeechCommand("grip");
+  lastCmd = "move";
+  this->deactiveSpeechCommand();
+  lastCmd = "turn";
+  this->deactiveSpeechCommand();
+  lastCmd = "look";
+  this->deactiveSpeechCommand();
+  lastCmd = "grasp";
+  this->deactiveSpeechCommand();
   connect(ui_.helpBtn_timeout, SIGNAL(clicked()), this, SLOT(clickLabelhelpBtn_timeout()));
   connect(ui_.helpBtn_Dsleeptime, SIGNAL(clicked()), this, SLOT(clickLabelhelpBtn_Dsleeptime()));
   connect(ui_.helpBtn_DexeCount, SIGNAL(clicked()), this, SLOT(clickLabelhelpBtn_DexeCount()));
@@ -58,40 +57,30 @@ void ccgui::initPlugin(qt_gui_cpp::PluginContext& context)
   connect(ui_.helpBtn_DtwistFactor, SIGNAL(clicked()), this, SLOT(clickLabelhelpBtn_DtwistFactor()));
   connect(ui_.helpBtn_DtwistSpeed, SIGNAL(clicked()), this, SLOT(clickLabelhelpBtn_DtwistSpeed()));
   connect(ui_.helpBtn_DgripperStep, SIGNAL(clicked()), this, SLOT(clickLabelhelpBtn_DgripperStep()));
-//  ros::NodeHandle n = getNodeHandle();
-//
-//  ros::Subscriber sub = n.subscribe("/speech_control_interface/cmd", 10, &ccgui::receiveSpeechCommand, this);
-//  ROS_INFO("topics %s %d", sub.getTopic().c_str(), 	  sub.getNumPublishers());
-//  ros::Publisher pubCmd = n.advertise<std_msgs::String>("/speech_control_interface/cmd1", 10);
-//
-//  ROS_INFO("%s %s",	getNodeHandle().getUnresolvedNamespace().c_str(),  getNodeHandle().getNamespace().c_str());
+  connect(ui_.startRSCI, SIGNAL(clicked()), this, SLOT(rsciBtn()));
 
+  sub = getNodeHandle().subscribe("/speech_control_interface/cmd", 10, &ccgui::receiveSpeechCommand, this);
+  robotActive = false;
+  appStatus = false;
 
-  ros::NodeHandle n = getNodeHandle();
-  ros::Subscriber sub = n.subscribe<std_msgs::String>("/speech_control_interface/cmd", 5, receiveSpeechCommand1);
-  ROS_INFO("topics %s %d", sub.getTopic().c_str(), 	  sub.getNumPublishers());
-  ros::Publisher pubCmd = n.advertise<std_msgs::String>("/cmd1", 1);
-
-  ROS_INFO("%s %s",	getNodeHandle().getUnresolvedNamespace().c_str(),  getNodeHandle().getNamespace().c_str());
-
-  if(!sub){
-	  ROS_INFO("ging nicht");
-  }else{
-	  ROS_INFO("ging");
-  }
-  if(n.ok()){
-		  ROS_INFO("ging!!!!!");
-
-  }else{
-		  ROS_INFO("ging nich!!!!!!!!!!!!!t");
-
-  }
-
+  timer = new QTimer(widget_);
+  connect(timer, SIGNAL(timeout()), this, SLOT(updateGUI()));
+  timer->start(500);
 }
 
 void ccgui::shutdownPlugin()
 {
-  // TODO unregister all publishers here
+	sub.shutdown();
+	delete timer;
+}
+
+void ccgui::updateGUI(){
+	if(speechCmd){
+		this->deactiveSpeechCommand();
+		this->activeSpeechCommand();
+		lastCmd = currentCmd;
+		speechCmd = false;
+	}
 }
 
 void ccgui::saveSettings(qt_gui_cpp::Settings& plugin_settings, qt_gui_cpp::Settings& instance_settings) const
@@ -115,6 +104,31 @@ void triggerConfiguration()
 {
   // Usually used to open a dialog to offer the user a set of configuration
 }*/
+
+void ccgui::receiveSpeechCommand(const std_msgs::StringConstPtr& cmd){
+	ROS_INFO("Received string: %s appStatus: %d", cmd->data.c_str(), appStatus);
+
+	if(appStatus){
+		string cmds = cmd->data;
+
+		vector<string> tokens;
+		stringstream mySstream(cmds);
+		string temp;
+		while (getline(mySstream, temp, ' ')) {
+			tokens.push_back(temp);
+		}
+
+		QString command = QString::fromStdString(tokens.at(0));
+		QString dataToCmd = QString::fromStdString(tokens.at(1));
+
+
+		if(command == "robo" || command == "move" || command == "turn" || command == "look" || command == "grasp"){
+			speechCmd = true;
+			currentCmd = command;
+			currentData = dataToCmd;
+		}
+	}
+}
 
 
 void ccgui::configureHelpButtons(){
@@ -161,122 +175,117 @@ void ccgui::configureHelpButtons(){
 
 }
 
-void ccgui::activeSpeechCommand(QString command, QString data){
-	QLabel* label;
-	QLabel* labelData;
-	if(command == "move"){
+void ccgui::activeSpeechCommand(){
+
+	QLabel* label = NULL;
+	QLabel* labelData = NULL;
+	if(currentCmd == "move"){
 		label = ui_.label_move;
 		labelData = ui_.label_move_data;
-	}else if(command == "turn"){
+	}else if(currentCmd == "turn"){
 		label = ui_.label_turn;
 		labelData = ui_.label_turn_data;
-	}else if(command == "look"){
+	}else if(currentCmd == "look"){
 		label = ui_.label_look;
 		labelData = ui_.label_look_data;
-	}else if(command == "grip"){
+	}else if(currentCmd == "grasp"){
+		label = ui_.label_gripper;
+		labelData = ui_.label_grip_data;
+	}else if(currentCmd == "robo"){
+		if(currentData == "stop"){
+			robotActive = false;
+		}else if(currentData == "start"){
+			robotActive = true;
+		}
+		changeLEDStatus("robot", robotActive);
+	}
+
+	if(label && labelData && robotActive){
+		label->setStyleSheet("QLabel{ gridline-color: rgb(0, 0, 0); "
+				"color: rgb(0,0,0); "
+				"padding: 2px; background-color: rgb(160, 160, 160);"
+				"border: 4px outset grey; } ");
+
+		labelData->setText(currentData);
+		labelData->setStyleSheet("QLabel{font: bold; font-size:24pt; color: rgb(0,0,204);}");
+	}
+}
+
+void ccgui::deactiveSpeechCommand(){
+	QLabel* label = NULL;
+	QLabel* labelData = NULL;
+	if(lastCmd == "move"){
+		label = ui_.label_move;
+		labelData = ui_.label_move_data;
+	}else if(lastCmd == "turn"){
+		label = ui_.label_turn;
+		labelData = ui_.label_turn_data;
+	}else if(lastCmd == "look"){
+		label = ui_.label_look;
+		labelData = ui_.label_look_data;
+	}else if(lastCmd == "grasp"){
 		label = ui_.label_gripper;
 		labelData = ui_.label_grip_data;
 	}
-	label->setStyleSheet("QLabel{ gridline-color: rgb(0, 0, 0); "
-			"color: rgb(0,0,0); "
-			"padding: 2px; background-color: rgb(160, 160, 160);"
-			"border: 4px outset grey; } ");
-	labelData->setStyleSheet("QLabel{font: bold; font-size:24pt; color: rgb(0,0,204);}");
-	labelData->setText(data);
-}
-void ccgui::deactiveSpeechCommand(QString command){
-	QLabel* label;
-	QLabel* labelData;
-	if(command == "move"){
-		label = ui_.label_move;
-		labelData = ui_.label_move_data;
-	}else if(command == "turn"){
-		label = ui_.label_turn;
-		labelData = ui_.label_turn_data;
-	}else if(command == "look"){
-		label = ui_.label_look;
-		labelData = ui_.label_look_data;
-	}else if(command == "grip"){
-		label = ui_.label_gripper;
-		labelData = ui_.label_grip_data;
+
+	if(label && labelData && robotActive){
+		label->setStyleSheet("QLabel{ gridline-color: rgb(0, 0, 0); "
+				"color: rgb(64,64,64); "
+				"padding: 2px; background-color: rgb(96, 96, 96);"
+				"border: 4px inset grey; } ");
+		labelData->setStyleSheet("QLabel{ font-size:24pt; color: rgb(64,64,64);}");
 	}
-	label->setStyleSheet("QLabel{ gridline-color: rgb(0, 0, 0); "
-			"color: rgb(64,64,64); "
-			"padding: 2px; background-color: rgb(96, 96, 96);"
-			"border: 4px inset grey; } ");
-	labelData->setStyleSheet("QLabel{ font-size:24pt; color: rgb(64,64,64);}");
 }
+
+void ccgui::rsciBtn(){
+	if(appStatus){
+		ui_.startRSCI->setText("Start RSCI");
+	}else{
+		ui_.startRSCI->setText("Stop RSCI");
+	}
+
+	appStatus = !appStatus;
+	changeLEDStatus("appStatus", appStatus);
+
+}
+
+void ccgui::changeLEDStatus(QString object, bool active){
+
+	std::string status = "";
+	QPushButton* btn = NULL;
+
+	if(active){
+		status = "greenstatus";
+	}else{
+		status = "redstatus";
+	}
+
+	if(object == "robot"){
+		btn = ui_.robot_active;
+	}else if(object == "appStatus"){
+		btn = ui_.status;
+	}
+	  QIcon refresh_icon;
+	  std::string path = ros::package::getPath("rqt_ccgui")+"/img/"+status+".png";
+	  QString icon_path(path.c_str());
+	  refresh_icon.addFile(icon_path);
+	  btn->setIcon(refresh_icon);
+	  btn->setIconSize(QSize(21, 21));
+	  btn->setStyleSheet("QPushButton{border: none;outline: none;}");
+}
+
 
 void ccgui::clickLabelhelpBtn_timeout(){
-
-	 this->deactiveSpeechCommand("move");
-
-//	  ros::NodeHandle n = getNodeHandle();
-//
-//	  ros::Subscriber sub = n.subscribe<std_msgs::String>("/speech_control_interface/cmd", 10, &ccgui::receiveSpeechCommand, this);
-//	  ROS_INFO("topics %s %d", sub.getTopic().c_str(), 	  sub.getNumPublishers());
-//	  ros::Publisher pubCmd = n.advertise<std_msgs::String>("/cmd1", 1);
-//
-//	  ROS_INFO("%s %s",	getNodeHandle().getUnresolvedNamespace().c_str(),  getNodeHandle().getNamespace().c_str());
-
-
-
-	  ros::NodeHandle n = getNodeHandle();
-	   if(n.ok()){
-			  ROS_INFO("ging!!!!!");
-
-	   }else{
-			  ROS_INFO("ging nich!!!!!!!!!!!!!t");
-
-	   }
-	  ros::Subscriber sub = n.subscribe<std_msgs::String>("/speech_control_interface/cmd", 5, receiveSpeechCommand1);
-	  ROS_INFO("topsics %s %d", sub.getTopic().c_str(), 	  sub.getNumPublishers());
-	  ros::Publisher pubCmd = n.advertise<std_msgs::String>("/speech_control_interface/cmd1", 1);
-		stringstream ss;
-		ss << "ss" << "ss";
-		std_msgs::StringPtr publishMsg(new std_msgs::String);
-		publishMsg->data = ss.str();
-	  pubCmd.publish(publishMsg);
-	  ROS_INFO("%s %s",	getNodeHandle().getUnresolvedNamespace().c_str(),  getNodeHandle().getNamespace().c_str());
-
-
-	  if(!sub){
-		  ROS_INFO("ging nicht");
-	  }else{
-		  ROS_INFO("ging");
-	  }
-
-
-//	 int ret = QMessageBox::information(widget_, QString("About timeout"),
-//			 QString("Timeout between two commands.\n"
-//	                                   "in [ms]"),
-//	                                QMessageBox::Close);
+	 int ret = QMessageBox::information(widget_, QString("About timeout"),
+			 QString("Timeout between two commands.\n"
+	                                   "in [ms]"),
+	                                QMessageBox::Close);
 }
 void ccgui::clickLabelhelpBtn_Dsleeptime(){
-	 this->activeSpeechCommand("move", "backward");
-	   ros::NodeHandle n = getNodeHandle();
-	   if(n.ok()){
-			  ROS_INFO("ging!!!!!");
-
-	   }else{
-			  ROS_INFO("ging nich!!!!!!!!!!!!!t");
-
-	   }
-
-	   ros::Subscriber sub = n.subscribe("/speech_control_interface/cmd", 5, &ccgui::receiveSpeechCommand, this);
-	   ROS_INFO("topics %s %d", sub.getTopic().c_str(), 	  sub.getNumPublishers());
-	   ros::Publisher pubCmd = n.advertise<std_msgs::String>("/speech_control_interface/cmd1", 10);
-		stringstream ss;
-		ss << "ss" << "ss";
-		std_msgs::StringPtr publishMsg(new std_msgs::String);
-		publishMsg->data = ss.str();
-	  pubCmd.publish(publishMsg);
-	   ROS_INFO("%s %s",	getNodeHandle().getUnresolvedNamespace().c_str(),  getNodeHandle().getNamespace().c_str());
-
-//	 int ret = QMessageBox::information(widget_, QString("About default sleep time"),
-//			 QString("The default sleep time between two execution steps.\n"
-//	                                   "in [s]"),
-//	                                QMessageBox::Close);
+	 int ret = QMessageBox::information(widget_, QString("About default sleep time"),
+			 QString("The default sleep time between two execution steps.\n"
+	                                   "in [s]"),
+	                                QMessageBox::Close);
 }
 void ccgui::clickLabelhelpBtn_DexeCount(){
 	 int ret = QMessageBox::information(widget_, QString("About default execution count"),
