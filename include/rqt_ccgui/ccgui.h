@@ -10,6 +10,7 @@
 #include <ros/package.h>
 #include <std_msgs/String.h>
 #include <ros/ros.h>
+using namespace std;
 
 namespace rqt_ccgui {
 

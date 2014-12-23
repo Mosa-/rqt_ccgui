@@ -14,6 +14,14 @@ ccgui::ccgui()
   setObjectName("rqt_ccgui");
 }
 
+void ccgui::receiveSpeechCommand(const std_msgs::StringConstPtr& cmd){
+	ROS_INFO("test test %s", cmd->data.c_str());
+}
+
+void receiveSpeechCommand1(const std_msgs::StringConstPtr& cmd){
+	ROS_INFO("test test %s", cmd->data.c_str());
+}
+
 
 
 void ccgui::initPlugin(qt_gui_cpp::PluginContext& context)
@@ -50,6 +58,35 @@ void ccgui::initPlugin(qt_gui_cpp::PluginContext& context)
   connect(ui_.helpBtn_DtwistFactor, SIGNAL(clicked()), this, SLOT(clickLabelhelpBtn_DtwistFactor()));
   connect(ui_.helpBtn_DtwistSpeed, SIGNAL(clicked()), this, SLOT(clickLabelhelpBtn_DtwistSpeed()));
   connect(ui_.helpBtn_DgripperStep, SIGNAL(clicked()), this, SLOT(clickLabelhelpBtn_DgripperStep()));
+//  ros::NodeHandle n = getNodeHandle();
+//
+//  ros::Subscriber sub = n.subscribe("/speech_control_interface/cmd", 10, &ccgui::receiveSpeechCommand, this);
+//  ROS_INFO("topics %s %d", sub.getTopic().c_str(), 	  sub.getNumPublishers());
+//  ros::Publisher pubCmd = n.advertise<std_msgs::String>("/speech_control_interface/cmd1", 10);
+//
+//  ROS_INFO("%s %s",	getNodeHandle().getUnresolvedNamespace().c_str(),  getNodeHandle().getNamespace().c_str());
+
+
+  ros::NodeHandle n = getNodeHandle();
+  ros::Subscriber sub = n.subscribe<std_msgs::String>("/speech_control_interface/cmd", 5, receiveSpeechCommand1);
+  ROS_INFO("topics %s %d", sub.getTopic().c_str(), 	  sub.getNumPublishers());
+  ros::Publisher pubCmd = n.advertise<std_msgs::String>("/cmd1", 1);
+
+  ROS_INFO("%s %s",	getNodeHandle().getUnresolvedNamespace().c_str(),  getNodeHandle().getNamespace().c_str());
+
+  if(!sub){
+	  ROS_INFO("ging nicht");
+  }else{
+	  ROS_INFO("ging");
+  }
+  if(n.ok()){
+		  ROS_INFO("ging!!!!!");
+
+  }else{
+		  ROS_INFO("ging nich!!!!!!!!!!!!!t");
+
+  }
+
 }
 
 void ccgui::shutdownPlugin()
@@ -78,11 +115,6 @@ void triggerConfiguration()
 {
   // Usually used to open a dialog to offer the user a set of configuration
 }*/
-
-
-void ccgui::receiveSpeechCommand(const std_msgs::StringConstPtr& cmd){
-	ROS_INFO("test test %s", cmd->data.c_str());
-}
 
 
 void ccgui::configureHelpButtons(){
@@ -176,9 +208,45 @@ void ccgui::deactiveSpeechCommand(QString command){
 }
 
 void ccgui::clickLabelhelpBtn_timeout(){
+
 	 this->deactiveSpeechCommand("move");
-	  ros::Subscriber sub = getNodeHandle().subscribe("/speech_control_interface/cmd", 10, &ccgui::receiveSpeechCommand, this);
-	  ROS_INFO("topics %s %d", sub.getTopic().c_str(), 	  sub.getNumPublishers());
+
+//	  ros::NodeHandle n = getNodeHandle();
+//
+//	  ros::Subscriber sub = n.subscribe<std_msgs::String>("/speech_control_interface/cmd", 10, &ccgui::receiveSpeechCommand, this);
+//	  ROS_INFO("topics %s %d", sub.getTopic().c_str(), 	  sub.getNumPublishers());
+//	  ros::Publisher pubCmd = n.advertise<std_msgs::String>("/cmd1", 1);
+//
+//	  ROS_INFO("%s %s",	getNodeHandle().getUnresolvedNamespace().c_str(),  getNodeHandle().getNamespace().c_str());
+
+
+
+	  ros::NodeHandle n = getNodeHandle();
+	   if(n.ok()){
+			  ROS_INFO("ging!!!!!");
+
+	   }else{
+			  ROS_INFO("ging nich!!!!!!!!!!!!!t");
+
+	   }
+	  ros::Subscriber sub = n.subscribe<std_msgs::String>("/speech_control_interface/cmd", 5, receiveSpeechCommand1);
+	  ROS_INFO("topsics %s %d", sub.getTopic().c_str(), 	  sub.getNumPublishers());
+	  ros::Publisher pubCmd = n.advertise<std_msgs::String>("/speech_control_interface/cmd1", 1);
+		stringstream ss;
+		ss << "ss" << "ss";
+		std_msgs::StringPtr publishMsg(new std_msgs::String);
+		publishMsg->data = ss.str();
+	  pubCmd.publish(publishMsg);
+	  ROS_INFO("%s %s",	getNodeHandle().getUnresolvedNamespace().c_str(),  getNodeHandle().getNamespace().c_str());
+
+
+	  if(!sub){
+		  ROS_INFO("ging nicht");
+	  }else{
+		  ROS_INFO("ging");
+	  }
+
+
 //	 int ret = QMessageBox::information(widget_, QString("About timeout"),
 //			 QString("Timeout between two commands.\n"
 //	                                   "in [ms]"),
@@ -186,6 +254,24 @@ void ccgui::clickLabelhelpBtn_timeout(){
 }
 void ccgui::clickLabelhelpBtn_Dsleeptime(){
 	 this->activeSpeechCommand("move", "backward");
+	   ros::NodeHandle n = getNodeHandle();
+	   if(n.ok()){
+			  ROS_INFO("ging!!!!!");
+
+	   }else{
+			  ROS_INFO("ging nich!!!!!!!!!!!!!t");
+
+	   }
+
+	   ros::Subscriber sub = n.subscribe("/speech_control_interface/cmd", 5, &ccgui::receiveSpeechCommand, this);
+	   ROS_INFO("topics %s %d", sub.getTopic().c_str(), 	  sub.getNumPublishers());
+	   ros::Publisher pubCmd = n.advertise<std_msgs::String>("/speech_control_interface/cmd1", 10);
+		stringstream ss;
+		ss << "ss" << "ss";
+		std_msgs::StringPtr publishMsg(new std_msgs::String);
+		publishMsg->data = ss.str();
+	  pubCmd.publish(publishMsg);
+	   ROS_INFO("%s %s",	getNodeHandle().getUnresolvedNamespace().c_str(),  getNodeHandle().getNamespace().c_str());
 
 //	 int ret = QMessageBox::information(widget_, QString("About default sleep time"),
 //			 QString("The default sleep time between two execution steps.\n"
