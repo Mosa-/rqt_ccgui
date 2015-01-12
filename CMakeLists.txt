@@ -7,6 +7,7 @@ find_package(catkin REQUIRED COMPONENTS
   rqt_gui
   rqt_gui_cpp
   rqt_gui_py
+ ## message_generation
 )
 
 find_package(Qt4 COMPONENTS QtCore QtGui REQUIRED)
@@ -70,6 +71,7 @@ DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
 install(DIRECTORY include/${PROJECT_NAME}/
 DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
 )
+
 
 
 

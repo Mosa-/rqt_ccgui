@@ -9,6 +9,7 @@
 #include <QMessageBox>
 #include <ros/package.h>
 #include <std_msgs/String.h>
+#include <std_msgs/Float32MultiArray.h>
 #include <string>
 #include <ros/ros.h>
 #include <QTimer>
@@ -38,6 +39,7 @@ private:
   QTimer* timer;
 
   ros::Subscriber sub;
+  ros::Publisher cpPub;
   bool speechCmd;
   QString lastCmd;
   QString currentCmd;

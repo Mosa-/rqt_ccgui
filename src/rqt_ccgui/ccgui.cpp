@@ -60,6 +60,7 @@ void ccgui::initPlugin(qt_gui_cpp::PluginContext& context)
   connect(ui_.startRSCI, SIGNAL(clicked()), this, SLOT(rsciBtn()));
 
   sub = getNodeHandle().subscribe("/speech_control_interface/cmd", 10, &ccgui::receiveSpeechCommand, this);
+  cpPub = getNodeHandle().advertise<std_msgs::Float32MultiArray>("/rqt_ccg/configparameter", 1);
   robotActive = false;
   appStatus = false;
 
@@ -241,6 +242,19 @@ void ccgui::rsciBtn(){
 	if(appStatus){
 		ui_.startRSCI->setText("Start RSCI");
 	}else{
+		std_msgs::Float32MultiArray cpArr;
+		cpArr.data.clear();
+		cpArr.data.push_back(ui_.lineEdit_timeout->text().toFloat());
+		cpArr.data.push_back(ui_.lineEdit_Dsleeptime->text().toFloat());
+		cpArr.data.push_back(ui_.lineEdit_DexeCount->text().toFloat());
+		cpArr.data.push_back(ui_.lineEdit_DmoveSpeed->text().toFloat());
+		cpArr.data.push_back(ui_.lineEdit_DaccFactor->text().toFloat());
+		cpArr.data.push_back(ui_.lineEdit_maxSpeed->text().toFloat());
+		cpArr.data.push_back(ui_.lineEdit_DtwistFactor->text().toFloat());
+		cpArr.data.push_back(ui_.lineEdit_DtwistSpeed->text().toFloat());
+		cpArr.data.push_back(ui_.lineEdit_DgripperStep->text().toFloat());
+
+		cpPub.publish(cpArr);
 		ui_.startRSCI->setText("Stop RSCI");
 	}
 
